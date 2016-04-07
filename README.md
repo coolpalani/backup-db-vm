@@ -2,7 +2,7 @@
 
 # Take a backup snapshot of a VM managed by a vCenter
 ````
-$ python take_vm_snapshot.py \
+$ python take_vm_backup_snapshot.py \
     --vcenter-host my-vc.com \
     --vcenter-user my-vc-user \
     --vcenter-pwd my-vc-pwd \
