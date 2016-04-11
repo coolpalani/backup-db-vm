@@ -15,16 +15,18 @@ $ python take_vm_backup_snapshot.py \
 
 # Backup the data from a SQL database into Google Cloud Storage
 ## Get a compressed dump of a SQL database
-Postgres doc [here} (http://www.postgresql.org/docs/9.1/static/backup-dump.html).<br>
-You can use a timestamp in the gz file name, I used: sql-dump_040716_1234.gz
+PostgreSQL doc [here](http://www.postgresql.org/docs/9.1/static/backup-dump.html).<br>
+You can use a timestamp in the gz file name, for example I used: `sql-dump_040716_1234.gz`
 ````
 $ pg_dump dbname | gzip > sql-dump_040716_1234.gz
 ````
 ## Upload the archive to a Google Cloud Storage bucket
-# Get GCP API credentials
+# Get GCP Service credentials
 Authentication & Authorization are obivously required for using the GCP API/library: refer to the `Service account credentials` section of the [GCP doc](https://cloud.google.com/storage/docs/authentication?hl=en#service_accounts)<br>
-=> The private key (called `service account key`) is part of the the service account credentials JSON.<br>
-FYI: An env var `GOOGLE_APPLICATION_CREDENTIALS` needs to point to that credentials JSON, but this is handled in the python script
+=> The private key (service account key) is part of the the service account credentials JSON returned as a result of service account credentials creation.<br>
+FYI: An env var `GOOGLE_APPLICATION_CREDENTIALS` needs to point to that credentials JSON, but this is handled in the python script.
+# Upload the file to GCS
+The python script will upload the archive to the specified GCS bucket:
 ````
 $ python upload_file_to_gcs.py \
     --gcs-bucket my-bucket \
