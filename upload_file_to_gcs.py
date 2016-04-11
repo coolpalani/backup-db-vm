@@ -80,9 +80,9 @@ def validate_upload_file(bucket, filename, gcs_filetype):
 
     # Validate an object of the right name and contentType exists on the bucket
     if any(obj['name'] == filename and obj['contentType'] == gcs_filetype and obj['size'] > 0 for obj in all_objects):
-        logging.info("The object of name '%s' is present on the bucket '%s'!" % (filename, bucket))
+        logging.info("The object named '%s' has been uploaded to the bucket '%s'!" % (filename, bucket))
     else:
-        logging.error("ERROR: The object of name '%s' is not present on the bucket '%s' or is of size null" % (filename, bucket))
+        logging.error("ERROR: The object named'%s' is not present on the bucket '%s' or is of size null" % (filename, bucket))
     return
 
 
