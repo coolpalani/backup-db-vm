@@ -1,4 +1,10 @@
 # backup-db-vm
+Backing up a database VM can be easily done using a scheduled job executed by a Jenkins server.
+<br>
+Two different actions seem necessary:
+* Taking a snapshot of the VM itself
+* Saving a dump of the DB on a cloud storage (Google Cloud Storage or Amazon S3)
+Storing SQL dumps from Prod on a 3rd party platform can also be very helpful for developers: they can import the production data in their local devtest environment easily & safely.
 
 # Take a backup snapshot of the VM managed by a vCenter
 Taking a snapshot of a VM can be triggered through VMware vSphere API, using [pyVmomi](https://github.com/vmware/pyvmomi) for example.
@@ -17,7 +23,7 @@ $ python take_vm_backup_snapshot.py \
 04/06/16 21:29 - Backup snaphost for VM 'my-vm-name' succesfully taken!
 ````
 Result:
-<br><img src="https://github.com/craimbert/backup-db-vm/blob/master/list_backup_snapshots_vcenter.png" width="500">
+<br><img src="https://github.com/craimbert/backup-db-vm/blob/master/list_backup_snapshots_vcenter.png" width="600" >
 
 
 # Backup the data from a PSQL database into Google Cloud Storage
@@ -30,7 +36,7 @@ $ pg_dump dbname | gzip > sql-dump_040716_1234.gz
 ## Upload the archive to a Google Cloud Storage bucket
 
 ### Get GCP Service credentials
-Authentication is obivously required for using the GCP API/library: refer to the `Service account credentials` section of the [GCP doc](https://cloud.google.com/storage/docs/authentication?hl=en#service_accounts)=> The private key (service account key) is part of the the service account credentials JSON returned as a result of service account credentials creation.
+Authentication is obivously required for using the GCP API/library: refer to the `Service account credentials` section of the [GCP doc](https://cloud.google.com/storage/docs/authentication?hl=en#service_accounts) => The private key (service account key) is part of the the service account credentials JSON returned as a result of service account credentials creation.
 <br>
 <br>
 FYI: An env var `GOOGLE_APPLICATION_CREDENTIALS` needs to point to that credentials JSON, but this is handled in the python script.
