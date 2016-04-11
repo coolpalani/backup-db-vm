@@ -17,7 +17,8 @@ $ python take_vm_backup_snapshot.py \
 04/06/16 21:29 - Backup snaphost for VM 'my-vm-name' succesfully taken!
 ````
 Result:
-![snapshots list](https://github.com/craimbert/backup-db-vm/blob/master/list_backup_snapshots_vcenter.png){:height="80px" width="50px"}
+<img src="https://github.com/craimbert/backup-db-vm/blob/master/list_backup_snapshots_vcenter.png" width="48">
+
 
 # Backup the data from a PSQL database into Google Cloud Storage
 ## Get a compressed dump of a PSQL database
